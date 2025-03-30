@@ -2,13 +2,27 @@ input:focus,
 select:focus,
 button:focus,
 textarea:focus {
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
   border: 1;
 }
 
 textarea:focus {
   outline: none !important;
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+textarea::-webkit-input-placeholder {
+  font-size: .8rem;
+}
+
+textarea:-ms-input-placeholder {
+  font-size: .8rem;
+}
+
+textarea::-ms-input-placeholder {
+  font-size: .8rem;
 }
 
 textarea::placeholder {
@@ -17,7 +31,20 @@ textarea::placeholder {
 
 input:focus {
   outline: none !important;
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+input::-webkit-input-placeholder {
+  font-size: .8rem;
+}
+
+input:-ms-input-placeholder {
+  font-size: .8rem;
+}
+
+input::-ms-input-placeholder {
+  font-size: .8rem;
 }
 
 input::placeholder {
@@ -26,7 +53,20 @@ input::placeholder {
 
 select:focus {
   outline: none !important;
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+select::-webkit-input-placeholder {
+  font-size: .8rem;
+}
+
+select:-ms-input-placeholder {
+  font-size: .8rem;
+}
+
+select::-ms-input-placeholder {
+  font-size: .8rem;
 }
 
 select::placeholder {
@@ -54,7 +94,8 @@ body .main .container .form-sizer {
   max-width: 450px;
   width: 100%;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 body .main .container .form-sizer .form {
@@ -81,6 +122,18 @@ body .main .container .form-sizer .form .form-input .form-control {
   font-weight: 500 !important;
 }
 
+body .main .container .form-sizer .form .form-input .form-control::-webkit-input-placeholder {
+  color: #633b3e;
+}
+
+body .main .container .form-sizer .form .form-input .form-control:-ms-input-placeholder {
+  color: #633b3e;
+}
+
+body .main .container .form-sizer .form .form-input .form-control::-ms-input-placeholder {
+  color: #633b3e;
+}
+
 body .main .container .form-sizer .form .form-input .form-control::placeholder {
   color: #633b3e;
 }
@@ -92,6 +145,7 @@ body .main .container .form-sizer .form .form-input .oauth-btn {
   border-radius: 999px;
   padding: 12px;
   font-size: .9rem;
+  -webkit-transition: .05s ease;
   transition: .05s ease;
   cursor: pointer;
 }
@@ -142,3 +196,4 @@ body .main .container .form-sizer .form .conditional-navigation a {
   font-weight: 600 !important;
   text-decoration: none;
 }
+/*# sourceMappingURL=login.css.map */
