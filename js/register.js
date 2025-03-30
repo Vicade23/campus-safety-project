@@ -1,5 +1,5 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js'
-import {getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js'
+import {getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js'
 
 
 const firebaseConfig = {
@@ -18,6 +18,8 @@ const firebaseConfig = {
 
 
     
+    const form = document.getElementById('form')
+    const names = document.getElementById('name-input')
     const email = document.getElementById('email-input')
     const password = document.getElementById('password-input')
     const oauthBtn = document.getElementById('oauth-btns')
@@ -28,7 +30,7 @@ const firebaseConfig = {
 
     
     oauthBtn.addEventListener('click', async (e) => {
-        
+
        await signInWithPopup(auth, provider).then((result) => {
             const user = result.user
             console.log('User signed up', user)
@@ -47,7 +49,7 @@ const firebaseConfig = {
               });
               Toast.fire({
                 icon: "success",
-                title: "Signed in successfully"
+                title: "Signed up successfully"
               });
               setTimeout(() => {
                   window.location.href= '/dashboard.html'
@@ -76,15 +78,15 @@ const firebaseConfig = {
 
      const formDetail = submitBtn.addEventListener('click', (e) => {
 
-        if(email.value && password.value) {
+        if(names.value && email.value && password.value) {
             
             if(password.value.length >= 8) {
-
-                  formData = {
+                formData = {
+                    user_name: names.value,
                     user_email: email.value,
                     user_password: password.value
                 }
-                signInWithEmailAndPassword(auth, formData.user_email, formData.user_password).then((userCredential) => {
+                createUserWithEmailAndPassword(auth, formData.user_email, formData.user_password).then((userCredential) => {
                     console.log('User signed up', userCredential?.user)
                     localStorage.setItem('user-access-token', JSON.stringify(userCredential.user));
 
@@ -101,9 +103,8 @@ const firebaseConfig = {
                         });
                         Toast.fire({
                         icon: "success",
-                        title: "Signed in successfully"
+                        title: "Signed up successfully"
                         });
-
                         setTimeout(() => {
                             window.location.href= '/dashboard.html'
                         }, 3000);

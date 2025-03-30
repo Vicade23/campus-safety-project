@@ -82,35 +82,35 @@ body .main .container .form-sizer {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-body .main .container .form-sizer .form {
+body .main .container .form-sizer .form-container {
   width: 100%;
   height: inherit;
 }
 
-body .main .container .form-sizer .form .h2 {
+body .main .container .form-sizer .form-container .h2 {
   font-size: 24px;
   font-weight: 600 !important;
   color: #181616;
 }
 
-body .main .container .form-sizer .form .form-input .label {
+body .main .container .form-sizer .form-container .form-input .label {
   font-size: 16px;
   font-weight: 600 !important;
   color: #181616;
 }
 
-body .main .container .form-sizer .form .form-input .form-control {
+body .main .container .form-sizer .form-container .form-input .form-control {
   border-radius: 8px;
   padding: 14px;
   font-size: .9rem;
   font-weight: 500 !important;
 }
 
-body .main .container .form-sizer .form .form-input .form-control::placeholder {
+body .main .container .form-sizer .form-container .form-input .form-control::placeholder {
   color: #633b3e;
 }
 
-body .main .container .form-sizer .form .form-input .oauth-btn {
+body .main .container .form-sizer .form-container .form-input .oauth-btn {
   border: 1px solid #181616;
   font-size: .9rem;
   font-weight: 600 !important;
@@ -121,24 +121,24 @@ body .main .container .form-sizer .form .form-input .oauth-btn {
   cursor: pointer;
 }
 
-body .main .container .form-sizer .form .form-input .oauth-btn span {
+body .main .container .form-sizer .form-container .form-input .oauth-btn span {
   color: #181616;
 }
 
-body .main .container .form-sizer .form .form-input .oauth-btn img {
+body .main .container .form-sizer .form-container .form-input .oauth-btn img {
   width: 30px;
 }
 
-body .main .container .form-sizer .form .form-input .oauth-btn:hover {
+body .main .container .form-sizer .form-container .form-input .oauth-btn:hover {
   background-color: #181616;
   color: #fff;
 }
 
-body .main .container .form-sizer .form .form-input .oauth-btn:hover span {
+body .main .container .form-sizer .form-container .form-input .oauth-btn:hover span {
   color: #fff;
 }
 
-body .main .container .form-sizer .form .form-input .btn {
+body .main .container .form-sizer .form-container .form-input .btn {
   background-color: #181616;
   color: #fff;
   font-size: .9rem;
@@ -149,21 +149,21 @@ body .main .container .form-sizer .form .form-input .btn {
   border: 1px solid #181616;
 }
 
-body .main .container .form-sizer .form .form-input .btn:hover {
+body .main .container .form-sizer .form-container .form-input .btn:hover {
   background-color: #252222;
 }
 
-body .main .container .form-sizer .form .or-absolute-container span {
+body .main .container .form-sizer .form-container .or-absolute-container span {
   font-size: .8rem;
   color: #4f4c4c;
 }
 
-body .main .container .form-sizer .form .conditional-navigation {
+body .main .container .form-sizer .form-container .conditional-navigation {
   font-size: .9rem;
   color: #181616;
 }
 
-body .main .container .form-sizer .form .conditional-navigation a {
+body .main .container .form-sizer .form-container .conditional-navigation a {
   font-weight: 600 !important;
   text-decoration: none;
 }

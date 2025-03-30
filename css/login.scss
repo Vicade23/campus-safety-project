@@ -2,6 +2,27 @@ $default-color: #fff;
 // $bg-color: #6C060D;
 $bg-color: #181616;
 
+* {
+    padding: 0;
+    margin: 0;
+    transition: .3s ease;
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+        &:hover {
+            background: #555;
+        }
+    }
+    box-sizing: border-box;
+    font-family: Aeoniktrial, sans-serif;;
+}
+
 
 
 input:focus, 
@@ -68,7 +89,7 @@ body {
                 width: 100%;
                 border-radius: 12px;
                 box-shadow: 0 4px 15px rgba(0, 0, 0, .15);
-                .form {
+                .form-container {
                     width: 100%;
                     height: inherit;
                     .h2 {
