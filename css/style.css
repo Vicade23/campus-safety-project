@@ -102,4 +102,5 @@ body {
 .footer .copyright-and-powered-container {
   padding: 20px 0;
   font-size: 13px;
+  font-weight: 400 !important;
 }
