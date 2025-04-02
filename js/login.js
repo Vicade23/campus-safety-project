@@ -54,7 +54,7 @@ const firebaseConfig = {
               }, 3000);
 
         }).catch((error) => {
-            console.log('Error signing up', error)
+          console.log('error signing in', error.message)
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",
@@ -68,7 +68,7 @@ const firebaseConfig = {
               });
               Toast.fire({
                 icon: "warning",
-                title: "Error signing up"
+                title: error.message
               });
         })
     })
@@ -108,7 +108,7 @@ const firebaseConfig = {
                             window.location.href= '/dashboard.html'
                         }, 3000);
                 }).catch((error) => {
-                    console.log('error signing up')
+                  console.log('error signing in', error.message)
                     const Toast = Swal.mixin({
                         toast: true,
                         position: "top-end",
@@ -122,7 +122,7 @@ const firebaseConfig = {
                       });
                       Toast.fire({
                         icon: "warning",
-                        title: "Error signing up"
+                        title: error.message
                       });
                 })
                 

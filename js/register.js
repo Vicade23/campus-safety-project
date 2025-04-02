@@ -1,5 +1,6 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js'
-import {getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js'
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js'
+import { getFirestore, collection, addDoc, doc, setDoc } from 'https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js'
 
 
 const firebaseConfig = {
@@ -15,6 +16,7 @@ const firebaseConfig = {
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getFirestore(app);
 
 
     
@@ -56,7 +58,7 @@ const firebaseConfig = {
               }, 3000);
 
         }).catch((error) => {
-            console.log('Error signing up', error)
+          console.log('error signing up', error.message)
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",
@@ -70,7 +72,7 @@ const firebaseConfig = {
               });
               Toast.fire({
                 icon: "warning",
-                title: "Error signing up"
+                title: error.message
               });
         })
     })
@@ -86,46 +88,53 @@ const firebaseConfig = {
                     user_email: email.value,
                     user_password: password.value
                 }
-                createUserWithEmailAndPassword(auth, formData.user_email, formData.user_password).then((userCredential) => {
-                    console.log('User signed up', userCredential?.user)
-                    localStorage.setItem('user-access-token', JSON.stringify(userCredential.user));
+                
+                const createUser = async () => {
 
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
+                  const userDetails = await createUserWithEmailAndPassword(auth, formData.user_email, formData.user_password).then((userCredential) => {
+                      console.log('User signed up', userCredential?.user)
+                      localStorage.setItem('user-access-token', JSON.stringify(userCredential.user));
+
+                      const Toast = Swal.mixin({
+                          toast: true,
+                          position: "top-end",
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                              toast.onmouseenter = Swal.stopTimer;
+                              toast.onmouseleave = Swal.resumeTimer;
+                          }
+                          });
+                          Toast.fire({
+                          icon: "success",
+                          title: "Signed up successfully"
+                          });
+                          // setTimeout(() => {
+                          //     window.location.href= '/dashboard.html'
+                          // }, 3000);
+                  }).catch((error) => {
+                      console.log('error signing up', error.message)
+                      const Toast = Swal.mixin({
+                          toast: true,
+                          position: "top-end",
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
                             toast.onmouseenter = Swal.stopTimer;
                             toast.onmouseleave = Swal.resumeTimer;
-                        }
+                          }
                         });
                         Toast.fire({
-                        icon: "success",
-                        title: "Signed up successfully"
+                          icon: "warning",
+                          title: error.message
                         });
-                        setTimeout(() => {
-                            window.location.href= '/dashboard.html'
-                        }, 3000);
-                }).catch((error) => {
-                    console.log('error signing up')
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                          toast.onmouseenter = Swal.stopTimer;
-                          toast.onmouseleave = Swal.resumeTimer;
-                        }
-                      });
-                      Toast.fire({
-                        icon: "warning",
-                        title: "Error signing up"
-                      });
-                })
+                  });
+                  await setDoc(doc(db, 'users', user.uid), formData)
+                  console.log(formData)
+                }
+                createUser()
                 
                 isformData = true
             } else {
