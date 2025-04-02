@@ -91,8 +91,21 @@ const firebaseConfig = {
                 
                 const createUser = async () => {
 
-                  const userDetails = await createUserWithEmailAndPassword(auth, formData.user_email, formData.user_password).then((userCredential) => {
+                  const userDetails = await createUserWithEmailAndPassword(auth, formData.user_email, formData.user_password)
+                  .then((userCredential) => {
                       console.log('User signed up', userCredential?.user)
+
+                      // db.collection('users').doc(userCredential?.user.uid).set({
+                      //   name: formData.user_name,
+                      //   email: formData.user_email,
+                      // })
+
+                      // setDoc(doc(db, 'users', userCredential?.user.uid), {
+                      //   name: formData.user_name,
+                      //   email: formData.user_email,
+                      //   uid: userCredential?.user.uid,
+                      // })
+
                       localStorage.setItem('user-access-token', JSON.stringify(userCredential.user));
 
                       const Toast = Swal.mixin({
@@ -110,9 +123,11 @@ const firebaseConfig = {
                           icon: "success",
                           title: "Signed up successfully"
                           });
-                          // setTimeout(() => {
-                          //     window.location.href= '/dashboard.html'
-                          // }, 3000);
+                          
+                            setTimeout(() => {
+                              window.location.href= '/dashboard.html'
+                          }, 3000);
+
                   }).catch((error) => {
                       console.log('error signing up', error.message)
                       const Toast = Swal.mixin({
@@ -131,7 +146,7 @@ const firebaseConfig = {
                           title: error.message
                         });
                   });
-                  await setDoc(doc(db, 'users', user.uid), formData)
+
                   console.log(formData)
                 }
                 createUser()
@@ -158,21 +173,21 @@ const firebaseConfig = {
             }
         } else {
 
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              }
-            });
-            Toast.fire({
-              icon: "warning",
-              title: "Fill in all inputs"
-            });
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "warning",
+            title: "Fill in all inputs"
+          });
         }
         
         console.log(formData, isformData)
