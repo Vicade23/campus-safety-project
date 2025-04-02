@@ -142,7 +142,7 @@ const firebaseConfig = {
               });
               Toast.fire({
                 icon: "warning",
-                title: "Password: Min of 8"
+                title: "Password: Min of 8 characters"
               });
 
           }
